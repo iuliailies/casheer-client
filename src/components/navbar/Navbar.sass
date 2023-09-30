@@ -1,0 +1,42 @@
+@import 'src/styles/colours'
+@import 'src/styles/variables'
+
+nav
+    width: 10rem
+    height: 100%
+    display: flex
+    flex-direction: column
+    position: relative
+
+    .logo
+        padding-bottom: 2rem
+
+    a
+        height: 5rem
+        margin: .5rem
+        display: flex
+        align-items: center
+        justify-content: center
+
+        .angles-right
+            font-size: 1.2rem
+            position: absolute
+            right: 1rem
+            opacity: 0
+            transition: opacity $transition-duraiton
+
+        &:hover
+            &:not(.active)
+                svg
+                    font-size: 2.3rem
+
+        &.active
+           .angles-right
+            opacity: 1
+
+        svg
+            font-size: 2rem
+            color: $white
+            transition: all $transition-duraiton
+
+
