@@ -10,17 +10,17 @@ const Navbar = () => {
         <img src="assets/logo.svg" alt="" className='logo'/>
         <NavLink to="/">
             <FontAwesomeIcon icon={icon({name: 'hand-holding-dollar'})} />
-            <FontAwesomeIcon className='angles-right' icon={icon({name: 'angles-right'})} />
+            <FontAwesomeIcon className='icon' icon={icon({name: 'angles-right'})} />
         </NavLink>
 
         <NavLink to="/debts">
             <FontAwesomeIcon  icon={icon({name: 'handshake'})} />
-            <FontAwesomeIcon className='angles-right' icon={icon({name: 'angles-right'})} />
+            <FontAwesomeIcon className='icon' icon={icon({name: 'angles-right'})} />
         </NavLink>
 
         <NavLink to="/stats">
             <FontAwesomeIcon icon={icon({name: 'chart-column'})} />
-            <FontAwesomeIcon className='angles-right' icon={icon({name: 'angles-right'})} />
+            <FontAwesomeIcon className='icon' icon={icon({name: 'angles-right'})} />
         </NavLink>
 
     </nav>

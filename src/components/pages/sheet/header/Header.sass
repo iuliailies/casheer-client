@@ -1,0 +1,16 @@
+@import 'src/styles/colours'
+@import 'src/styles/variables'
+
+header
+    .icon
+        font-size: 1.6rem
+        position: relative
+
+        &:not(:first-child)
+            margin: 0 $padding-standard
+
+        &:not(:last-child)
+            color: $white
+
+        &:last-child
+            transform: translateY(-.1rem) // TODO: find nicer icon
