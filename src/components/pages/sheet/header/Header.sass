@@ -6,11 +6,25 @@ header
         font-size: 1.6rem
         position: relative
 
-        &:not(:first-child)
+        &:not(:first-child), &.primary
             margin: 0 $padding-standard
 
-        &:not(:last-child)
+        &:not(.primary)
             color: $white
 
-        &:last-child
+        &.primary
             transform: translateY(-.1rem) // TODO: find nicer icon
+
+    .dropdown-wrapper
+        position: relative
+
+        .dropdown
+            position: absolute
+            right: $padding-standard
+            top: calc(100% + .5rem)
+            height: 15rem
+            width: 23rem
+            background-color: $white
+            border: $border-primary
+            box-shadow: $box-shadow-primary
+            border-radius: $border-radius
