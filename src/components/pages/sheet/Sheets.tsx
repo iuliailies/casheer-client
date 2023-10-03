@@ -4,8 +4,7 @@ import Header from "./header/Header";
 const Sheets: React.FC = () => {
     const expenses : any[] = [];
 
-    const currentDate = new Date();
-    const [currentDateValue, setCurrentDateValue] = useState<Date>(currentDate);
+    const [currentDateValue, setCurrentDateValue] = useState<Date>(new Date());
 
     const handleDateChange = (newDate: Date) => {
         setCurrentDateValue(newDate);

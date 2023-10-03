@@ -1,0 +1,43 @@
+@import 'src/styles/colours'
+@import 'src/styles/variables'
+
+$gap-value: .4rem
+
+.grid-container
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    gap: $gap-value
+
+    .grid-item
+        text-align: center
+        padding: .3rem
+        transition: all $transition-duration
+
+        &:hover, &.active
+            color: $blue-primary
+
+        &.active
+            font-weight: $weight-medium
+
+        &:hover
+            transform: scale(1.15)
+            cursor: pointer
+
+
+
+.header
+    display: flex
+    justify-content: space-between
+    padding: 3*$gap-value
+
+    .year
+        transition: color $transition-duration
+
+        &.active
+            color: $blue-primary
+
+    .icons
+        .icon
+            color: $text-secondary
+            margin: 0 0 0 3*$gap-value
+

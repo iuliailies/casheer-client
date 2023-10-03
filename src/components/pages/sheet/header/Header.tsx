@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon, regular } from '@fortawesome/fontawesome-svg-core/import.macro'
 import './Header.sass'
+import Calendar from '../calendar/Calendar';
 
 interface HeaderProps {
     currentMonth: number;
     currentYear: number;
     onDateChange: (newDate: Date) => void;
-  }
+}
 
 const Header: React.FC<HeaderProps> = ({
   currentMonth,
@@ -24,14 +25,19 @@ const Header: React.FC<HeaderProps> = ({
     };
 
   const handleNextMonth = () => {
-  const newDate = new Date(currentYear, currentMonth + 1, 1);
-  onDateChange(newDate);
+    const newDate = new Date(currentYear, currentMonth + 1, 1);
+    onDateChange(newDate);
   };
 
   const handleToggleDropdown = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-      event.stopPropagation();
-      setDropdownOpen(prevIsDropdownOpen => !prevIsDropdownOpen);
+    event.stopPropagation();
+    setDropdownOpen(prevIsDropdownOpen => !prevIsDropdownOpen);
   }
+
+  const handleDateChange = (newDate: Date) => {
+    onDateChange(newDate);
+    setDropdownOpen(false);
+  };
 
   useEffect(() => {
       // handles clicks outside of the dropdown
@@ -75,10 +81,10 @@ const Header: React.FC<HeaderProps> = ({
         }).format(new Date(currentYear, currentMonth, 1))}
       </div>
       <div className="dropdown-wrapper">
-          <FontAwesomeIcon className="icon primary" onClick={handleToggleDropdown} ref={iconRef} icon={regular('calendar-plus')} />
+          <FontAwesomeIcon className={`icon primary ${isDropdownOpen ? 'active' : ''}`} onClick={handleToggleDropdown} ref={iconRef} icon={regular('calendar-plus')} />
           {isDropdownOpen && (
               <div className="dropdown" ref={dropdownRef}>
-
+                <Calendar currentMonth={currentMonth} currentYear={currentYear} onDateChange={handleDateChange}></Calendar>
               </div>
           )}
       </div>
