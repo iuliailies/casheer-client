@@ -33,7 +33,7 @@ const Calendar: React.FC<CalendarProps> = ({
         onDateChange(new Date(currentDateValue.getFullYear(), month, 1));
     }
 
-    return <div>
+    return <div className="wrapper">
         <div className="header text">
             <div className={`year subtitle ${currentDateValue.getFullYear() === (new Date()).getFullYear() ? 'active' : ''}`}>{ currentDateValue.getFullYear() }</div>
             <div className="icons">

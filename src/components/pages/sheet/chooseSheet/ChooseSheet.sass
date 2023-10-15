@@ -1,0 +1,74 @@
+@import 'src/styles/colours'
+@import 'src/styles/variables'
+
+.create-sheet-wrapper
+    width: 60rem
+    height: 40rem
+    padding: 2rem 1rem
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    background: $white
+    box-shadow: $box-shadow-primary
+    border-radius: $border-radius
+
+    .section-header
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+        .text
+            color: $gray-light
+
+    .content
+        display: flex
+        justify-content: space-around
+
+        .choose-option
+            height: 20rem
+            width: 25rem
+            padding: 1rem
+            border: $border-primary
+            border-radius: $border-radius
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+            align-items: center
+
+
+        .choose-option > .text
+            padding: 1rem
+
+.drop-area
+    .choose-option
+        border: $border-dashed !important // TODO: why is important needed here?
+        transition: border $transition-duration
+        position: relative
+
+        input
+            opacity: 0
+            position: absolute
+            z-index: 2
+            width: 100%
+            height: 100%
+            top: 0
+            left: 0
+            cursor: pointer
+
+        .option-content
+            height: 100%
+            display: flex
+            align-items: center
+
+            .text
+                color: $gray-light
+                transition: color $transition-duration
+
+    &.active, &:hover
+        .choose-option
+            border-color: $blue-primary !important
+
+            .option-content > .text
+                color: $blue-primary
