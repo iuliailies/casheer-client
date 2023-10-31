@@ -2,25 +2,13 @@ import React, { useState, useEffect } from "react";
 import Header from "./header/Header";
 import ChooseSheet from "./chooseSheet/ChooseSheet";
 import './Sheet.sass'
-import { getEntriesPerMonth } from "../../../api/entries.service";
-import { Entry } from "../../../types/entries.types";
+import EntriesTable from "./entries/entriesTable/EntriesTable";
+import { useEntries } from "../../../hooks/entries.hooks";
 
 const Sheets: React.FC = () => {
     const [currentDateValue, setCurrentDateValue] = useState<Date>(new Date());
-    const [entries, setEntries] = useState<Entry[]>([]);
-    const [entriesLoading, setEntriesLoading] = useState<boolean>(true);
 
-    useEffect(() => {
-        setEntriesLoading(true);
-        getEntriesPerMonth(currentDateValue.getMonth() + 1, currentDateValue.getFullYear()).then((result) => {
-            setEntries(result);
-            setEntriesLoading(false);
-        })
-        .catch((error) => {
-            // TODO: error handling
-            setEntriesLoading(false);
-        })
-    }, [currentDateValue])
+    const { entries, entriesLoading } = useEntries(currentDateValue);
 
     const handleDateChange = (newDate: Date) => {
         setCurrentDateValue(newDate);
@@ -43,6 +31,11 @@ const Sheets: React.FC = () => {
                     currentYear={currentDateValue.getFullYear()}
                     ></ChooseSheet>
                 </div>
+            }
+            {
+                !entriesLoading &&
+                entries.length &&
+                <EntriesTable entries={entries}></EntriesTable>
             }
         </main>
     </div>

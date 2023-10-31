@@ -4,6 +4,10 @@ export class Entry {
         this.data = data;
     }
 
+    get id(): number {
+        return this.data.id;
+    }
+
     get month(): number {
         return this.data.attributes.month;
     }
@@ -19,6 +23,10 @@ export class Entry {
     get subcategory(): string {
         return this.data.attributes.subcategory;
     }
+}
+
+export interface CategorizedEntries {
+    [category: string]: Entry[];
 }
 
 export interface GetEntriesRequest {
