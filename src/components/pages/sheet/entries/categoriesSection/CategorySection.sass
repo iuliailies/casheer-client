@@ -1,0 +1,48 @@
+@import 'src/styles/colours'
+@import 'src/styles/variables'
+    
+.category-section
+    margin-bottom: 5rem
+
+.category-row
+    display: flex
+    // width: 100%
+    padding: 1rem 2rem
+    align-items: center
+    text-transform: capitalize
+    border-bottom: $border-primary
+
+    .icon
+        margin-right: 1rem
+
+        &:last-child
+            margin-left: auto
+
+.entry-row
+    padding: 1rem 2rem
+    border-bottom: $border-thin
+
+    .column
+        display: flex
+        align-items: center
+
+        &:first-child
+            .icon
+                padding-left: 2rem
+                font-size: .5rem
+                margin-right: 1rem
+
+        &:last-child
+            .icon
+                opacity: 0
+                margin-right: .8rem
+                transition: opacity $transition-duration
+
+    &:hover
+        cursor: pointer
+
+        .column
+            &:last-child
+                .icon
+                    opacity: .3
+

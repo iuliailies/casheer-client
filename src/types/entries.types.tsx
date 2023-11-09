@@ -23,6 +23,10 @@ export class Entry {
     get subcategory(): string {
         return this.data.attributes.subcategory;
     }
+
+    get expected(): number {
+        return 100;
+    }
 }
 
 export interface CategorizedEntries {

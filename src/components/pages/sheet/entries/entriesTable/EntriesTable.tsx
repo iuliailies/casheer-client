@@ -1,4 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { CategorizedEntries } from "../../../../../types/entries.types";
+import CategoriesSection from "../categoriesSection/CategorySection";
 import './EntriesTable.sass'
 
 interface EntriesTableProps {
@@ -15,16 +18,27 @@ const EntriesTable: React.FC<EntriesTableProps> = ({entries}) => {
         return result;
       }, {});
 
-    return <div>
+    return <div className="table">
+      <div className="container header">
+        <div className="column is-5">
+          <div className="button">
+            <FontAwesomeIcon
+              className="icon"
+              icon={icon({ name: 'plus' })}
+            />
+          <span className="subtitle">Add Category</span>
+          </div>
+        </div>
+      <div className="column is-3 justify-center">
+        <span className="subtitle">Expected</span>
+      </div>
+      <div className="column is-3 justify-center">
+        <span className="subtitle">Spent so far</span>
+      </div>
+      <div className="column is-1"></div>
+      </div>
         {Object.entries(categorizedEntries).map(([category, entries]) => (
-            <div key={category}>
-            <h2>{category}</h2>
-            <div>
-                {entries.map((entry) => (
-                <div key={entry.id}>{entry.subcategory}</div>
-                ))}
-            </div>
-            </div>
+            <CategoriesSection key={category} category={category} entries={entries}></CategoriesSection>
       ))}
     </div>
 }
