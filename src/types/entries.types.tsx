@@ -1,3 +1,5 @@
+import { Value } from "./common.types";
+
 export class Entry {
     data: GetEntryResponse;
     constructor(data: GetEntryResponse) {
@@ -24,8 +26,8 @@ export class Entry {
         return this.data.attributes.subcategory;
     }
 
-    get expected(): number {
-        return 100;
+    get expected(): Value {
+        return this.data.attributes.expected_total;
     }
 }
 
@@ -48,9 +50,6 @@ export interface GetEntryResponse {
         year: number;
         category: string;
         subcategory: string;
-        expected_total: any; // TODO: handle curreny
-    }
-    meta: {
-        running_total: number;
+        expected_total: Value;
     }
 }
