@@ -9,8 +9,6 @@ import { getExpensesPerEntry } from "../api/expenses.service";
 export function useEntries(date: Date) {
     const [entries, setEntries] = useState<Entry[]>([]);
     const [entriesLoading, setEntriesLoading] = useState<boolean>(true);
-    const [expenses, setExpenses] = useState<(Expense[] | null)[]>([]); 
-    const [expensesLoading, setExpensesLoading] = useState<boolean>(true);
     
     useEffect(() => {
         // Function to fetch expenses for a single entry
@@ -27,17 +25,18 @@ export function useEntries(date: Date) {
         setEntriesLoading(true);
         getEntriesPerMonth(date.getMonth() + 1, date.getFullYear())
         .then((result) => {
-            setEntries(result);
-            setEntriesLoading(false);
-
             Promise.all(result.map((entry) => entry.id).map(fetchExpenses))
             .then((expenseResults) => {
-                setExpenses(expenseResults);
-                setExpensesLoading(false);
+                result.forEach((entry, index) => {
+                    entry.expenses = expenseResults[index];
+                })
+                // TODO: check why things are being called so many times in dev tools
+                setEntries(result);
+                setEntriesLoading(false);
             })
             .catch((error) => {
                 console.error('Error fetching expenses:', error);
-                setExpensesLoading(false);
+                setEntriesLoading(false);
             });
         })
         .catch((error) => {
@@ -47,5 +46,5 @@ export function useEntries(date: Date) {
         });
     }, [date]);
 
-    return { entries, entriesLoading, expenses, expensesLoading };
+    return { entries, entriesLoading };
 }

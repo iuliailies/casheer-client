@@ -1,7 +1,10 @@
 import { Value } from "./common.types";
+import { Expense } from "./expenses.types";
 
 export class Entry {
     data: GetEntryResponse;
+    expenses: Expense[] | null = [];
+
     constructor(data: GetEntryResponse) {
         this.data = data;
     }
@@ -28,6 +31,13 @@ export class Entry {
 
     get expected(): Value {
         return this.data.attributes.expected_total;
+    }
+
+    addExpense(expense: Expense) : void {
+        if(!this.expenses) {
+            return;
+        }
+        this.expenses.push(expense);
     }
 }
 

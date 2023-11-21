@@ -2,6 +2,7 @@ import './CategorySection.sass'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
 import { Entry } from '../../../../../types/entries.types';
+import Values from '../../values/Values';
 
 interface CategoriesSectionProps {
     category: string;
@@ -33,9 +34,15 @@ const CategorySection: React.FC<CategoriesSectionProps> = ({category, entries}) 
                         <div className='text'>{entry.subcategory}</div>
                     </div>
                     <div className="column is-3 justify-center">
-                        <div className="text">{entry.expected.amount + ' ' + entry.expected.currency}</div>
+                        <Values values={[entry.expected]}></Values>
                     </div>
                     <div className="column is-3 justify-center">
+                        {   // TODO: error handling when entry.expenses is null
+                            entry.expenses &&
+                            <Values values={entry.expenses.map(e => {
+                                return e.value
+                            })}></Values>
+                        }
                     </div>
                     <div className="column is-1 justify-end">
                         <FontAwesomeIcon
